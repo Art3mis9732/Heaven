@@ -708,38 +708,200 @@ body {
   background: rgba(255, 240, 245, 0.4);
 }
 
-.photo-placeholder {
+/* ============================================================
+   SCREEN 4 — DANCING MAHAL & "FOR LATER" WIP
+   ============================================================ */
+
+/* Big Dancing MAHAL */
+.mahal-wrapper {
+  margin: 0.2rem auto 1rem;
+  text-align: center;
+}
+
+.mahal-title {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  min-height: 220px;
-  padding: 2rem;
-  background:
-    repeating-linear-gradient(45deg,
-      rgba(248, 200, 212, 0.06), rgba(248, 200, 212, 0.06) 10px,
-      transparent 10px, transparent 20px),
-    linear-gradient(135deg, rgba(255, 245, 248, 0.7), rgba(253, 232, 208, 0.5));
-}
-
-.placeholder-icon {
-  font-size: 2.8rem;
-  margin-bottom: 0.6rem;
-  opacity: 0.5;
-}
-
-.placeholder-text {
+  align-items: center;
+  gap: 0.15rem;
   font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  color: #8a4060;
+  font-size: clamp(2.8rem, 10vw, 4.4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0.12em;
 }
 
-.placeholder-hint {
-  font-size: 0.75rem;
-  color: #a07080;
-  opacity: 0.6;
-  font-style: italic;
+.dance-char {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff3366 0%, #ff758c 35%, #ffd269 70%, #ff3366 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 3px 14px rgba(255, 51, 102, 0.4));
+  animation:
+    mahalDance 1.8s ease-in-out infinite,
+    shimmerText 3.5s linear infinite;
+  animation-delay: var(--d, 0s);
+  transform-origin: bottom center;
+}
+
+.dance-heart {
+  display: inline-block;
+  font-size: clamp(2rem, 7vw, 3rem);
+  animation:
+    heartBounce 1.5s ease-in-out infinite,
+    danceWiggle 1.8s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+  margin-left: 0.2rem;
+}
+
+.mahal-sub {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  color: #c24068;
   margin-top: 0.2rem;
+  letter-spacing: 0.05em;
+  opacity: 0.95;
+  text-shadow: 0 1px 10px rgba(255, 180, 200, 0.4);
+}
+
+@keyframes mahalDance {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  20% {
+    transform: translateY(-16px) rotate(-7deg) scale(1.12);
+  }
+  40% {
+    transform: translateY(-2px) rotate(4deg) scale(1.03);
+  }
+  60% {
+    transform: translateY(-11px) rotate(6deg) scale(1.08);
+  }
+  80% {
+    transform: translateY(-1px) rotate(-3deg) scale(1.02);
+  }
+}
+
+@keyframes shimmerText {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes heartBounce {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  30% {
+    transform: scale(1.25) translateY(-8px);
+  }
+  60% {
+    transform: scale(1.1) translateY(-3px);
+  }
+}
+
+/* "For later" Work in Progress frame */
+.wip-placeholder {
+  position: relative;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 182, 193, 0.12),
+      rgba(255, 182, 193, 0.12) 14px,
+      rgba(255, 240, 245, 0.28) 14px,
+      rgba(255, 240, 245, 0.28) 28px
+    ),
+    linear-gradient(135deg, rgba(255, 245, 248, 0.8), rgba(253, 235, 220, 0.65));
+  animation: candyStripeMove 18s linear infinite;
+  padding: 1.8rem 1.4rem;
+  min-height: 200px;
+}
+
+@keyframes candyStripeMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 100px 0; }
+}
+
+.wip-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 105, 140, 0.15);
+  border: 1px dashed rgba(220, 80, 120, 0.5);
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  margin-bottom: 0.6rem;
+  animation: softPulse 2.2s ease-in-out infinite;
+}
+
+.wip-icon {
+  font-size: 1.2rem;
+  animation: toolWiggle 2s ease-in-out infinite;
+}
+
+@keyframes toolWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg); }
+  75% { transform: rotate(15deg); }
+}
+
+.wip-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #a04060;
+  text-transform: uppercase;
+}
+
+.wip-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  font-weight: 700;
+  color: #7a2846;
+  margin-bottom: 0.2rem;
+  animation: wipGlow 3s ease-in-out infinite;
+}
+
+@keyframes wipGlow {
+  0%, 100% { text-shadow: 0 0 10px rgba(255, 140, 170, 0.2); }
+  50% { text-shadow: 0 0 18px rgba(255, 80, 130, 0.5); }
+}
+
+.wip-hint {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 0.88rem;
+  color: #905068;
+  margin-bottom: 0.8rem;
+}
+
+.wip-bar {
+  width: 140px;
+  height: 6px;
+  background: rgba(240, 180, 195, 0.35);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0.2rem auto 0;
+}
+
+.wip-bar-fill {
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(90deg, #ff7b9a, #ffd166, #ff7b9a);
+  background-size: 200% auto;
+  border-radius: 10px;
+  animation: barProgress 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes barProgress {
+  0% { width: 35%; background-position: 0% 0; }
+  100% { width: 75%; background-position: 100% 0; }
+}
+
+.wip-caption {
+  font-weight: 500;
+  color: #7a3050;
+  margin-top: 0.9rem;
 }
 
 .memory-photo {
@@ -810,6 +972,116 @@ body {
   color: rgba(255, 235, 240, 0.9);
   line-height: 1.8;
   margin-bottom: 1.8rem;
+}
+
+/* Majestic Signature - Adiran */
+.majestic-signature-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem auto 0.6rem;
+  position: relative;
+}
+
+.crown-float {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  animation: crownHover 2.6s ease-in-out infinite;
+  filter: drop-shadow(0 4px 14px rgba(255, 215, 0, 0.65));
+  margin-bottom: -0.2rem;
+}
+
+@keyframes crownHover {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) rotate(4deg) scale(1.14);
+  }
+}
+
+.majestic-signature-box .majestic-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.8rem, 8vw, 4rem);
+  font-weight: 500;
+  background: linear-gradient(
+    110deg,
+    #ffe270 0%,
+    #ffffff 22%,
+    #ffa3c0 45%,
+    #ffe270 65%,
+    #ffffff 82%,
+    #ff8fa9 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  animation: majesticShine 4s linear infinite;
+  filter: drop-shadow(0 2px 20px rgba(255, 215, 0, 0.55));
+  letter-spacing: 0.04em;
+  margin: 0;
+  line-height: 1.2;
+}
+
+@keyframes majesticShine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 250% 50%; }
+}
+
+/* Secret text: "yours future husband" */
+.secret-husband {
+  margin-top: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.95rem;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 220, 235, 0.35);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: secretPulse 3.5s ease-in-out infinite;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.secret-husband:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 215, 0, 0.7);
+  transform: scale(1.06);
+}
+
+.secret-husband-text {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: clamp(0.85rem, 2.6vw, 1.02rem);
+  font-weight: 500;
+  color: #fff6f8;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 10px rgba(255, 180, 205, 0.7);
+}
+
+.secret-sparkle {
+  font-size: 0.85rem;
+  animation: sparkleTwinkle 2s ease-in-out infinite;
+}
+
+.secret-sparkle:last-child {
+  animation-delay: 1s;
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2) rotate(15deg); }
+}
+
+@keyframes secretPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(255, 200, 220, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.45);
+  }
 }
 
 .signature {

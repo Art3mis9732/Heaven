@@ -1,17 +1,8 @@
 /* ============================================================
    FOR HEAVEN — ROMANTIC MINI WEBSITE
-   Main Stylesheet
-   
-   COLOR PALETTE:
-   - Blush Pink:    #f8c8d4
-   - Rose:          #e8879e
-   - Soft Peach:    #fde8d0
-   - Warm Gold:     #f5d0a9
-   - Deep Rose:     #c25b78
-   - Cream:         #fff5f0
-   - Soft White:    #fffaf7
-   
-   FONTS (Google Fonts):
+   Complete Stylesheet
+
+   GOOGLE FONTS USED:
    - Playfair Display — elegant serif for headings
    - Lora            — warm serif for body text
    - Great Vibes     — cursive for signature
@@ -27,59 +18,175 @@
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  height: 100%;
 }
 
 body {
   font-family: 'Lora', 'Georgia', serif;
   color: #5a2d3a;
-  overflow: hidden; /* prevents scroll — we transition between screens */
-  width: 100vw;
-  height: 100vh;
-  /* ====== DREAMY SUNSET / SUNRISE BACKGROUND ====== */
-  background:
-    /* Top-left warm glow */
-    radial-gradient(ellipse at 20% 20%, rgba(255, 200, 150, 0.5) 0%, transparent 60%),
-    /* Right-side rose glow */
-    radial-gradient(ellipse at 80% 30%, rgba(248, 180, 200, 0.5) 0%, transparent 55%),
-    /* Bottom warm horizon glow */
-    radial-gradient(ellipse at 50% 90%, rgba(255, 180, 120, 0.6) 0%, transparent 50%),
-    /* Center soft bloom */
-    radial-gradient(ellipse at 50% 50%, rgba(255, 220, 230, 0.3) 0%, transparent 70%),
-    /* Main gradient — sunrise/sunset sky */
-    linear-gradient(
-      to bottom,
-      #fceaef 0%,       /* soft pink sky */
-      #fde4d2 15%,      /* peach */
-      #fdd6bd 25%,      /* warm peach */
-      #f8c8d4 40%,      /* blush pink */
-      #f0a8b8 55%,      /* rose */
-      #e8979e 68%,      /* deeper rose */
-      #f0b89a 80%,      /* golden peach horizon */
-      #f5d0a9 90%,      /* warm gold */
-      #fde8d0 100%      /* cream horizon */
-    );
-  background-attachment: fixed;
-  min-height: 100vh;
-}
-
-/* ====== SCREEN / SECTION SYSTEM ====== */
-/* Each "screen" is a full-viewport overlay. Only one is visible at a time. */
-.screen {
-  position: fixed;
-  top: 0;
-  left: 0;
+  overflow: hidden;
   width: 100%;
   height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh; /* dynamic viewport height for mobile */
+}
+
+/* ============================================================
+   SCENIC BACKGROUND — Sky, Sun, Clouds, Horizon, Flower Field
+   This creates the romantic sunrise/sunset scenery entirely
+   in CSS. No images needed.
+   ============================================================ */
+
+.scene-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  /* Main sky gradient — dreamy sunrise/sunset */
+  background: linear-gradient(
+    180deg,
+    #2b1a3d 0%,         /* deep twilight top */
+    #4a2356 5%,          /* purple dusk */
+    #7b3f6e 12%,         /* mauve */
+    #c46a8a 22%,         /* rose */
+    #e8879e 32%,         /* warm rose */
+    #f4a5a0 40%,         /* salmon pink */
+    #f8c8a0 50%,         /* peach gold */
+    #fcd9a8 58%,         /* warm gold */
+    #ffe4c0 65%,         /* light gold horizon */
+    #ffecd2 72%,         /* cream */
+    #fce4e8 82%,         /* soft pink */
+    #f0d4e0 92%,         /* blush mist */
+    #e8ccd8 100%         /* floral mist ground */
+  );
+}
+
+/* Golden sun glow near the horizon */
+.scene-sun {
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 230, 160, 0.7) 0%,
+    rgba(255, 200, 120, 0.4) 30%,
+    rgba(255, 180, 140, 0.2) 50%,
+    transparent 70%
+  );
+  filter: blur(20px);
+  animation: sunPulse 6s ease-in-out infinite;
+}
+
+/* Soft clouds floating */
+.scene-cloud {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  filter: blur(30px);
+}
+
+.scene-cloud-1 {
+  width: 350px;
+  height: 80px;
+  top: 12%;
+  left: 10%;
+  animation: cloudDrift 25s linear infinite;
+}
+
+.scene-cloud-2 {
+  width: 280px;
+  height: 60px;
+  top: 20%;
+  right: 5%;
+  background: rgba(255, 220, 230, 0.18);
+  animation: cloudDrift 35s linear infinite reverse;
+}
+
+.scene-cloud-3 {
+  width: 400px;
+  height: 70px;
+  top: 30%;
+  left: 30%;
+  background: rgba(255, 200, 180, 0.12);
+  animation: cloudDrift 30s linear infinite;
+  animation-delay: -10s;
+}
+
+/* Warm horizon glow */
+.scene-horizon {
+  position: absolute;
+  bottom: 18%;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(
+    to top,
+    rgba(255, 200, 160, 0.4),
+    transparent
+  );
+  filter: blur(10px);
+}
+
+/* Flower field / ground area */
+.scene-field {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 18%;
+  background: linear-gradient(
+    to top,
+    #c8a0b0 0%,
+    #d4a8b8 30%,
+    #e0b8c4 60%,
+    rgba(224, 184, 196, 0) 100%
+  );
+}
+
+/* Row of flowers along the bottom */
+.scene-flowers-row {
+  position: absolute;
+  bottom: 2%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
+  opacity: 0.55;
+  filter: blur(0.5px);
+  overflow: hidden;
+}
+
+.scene-flowers-row span {
+  animation: gentleSway 4s ease-in-out infinite;
+}
+
+.scene-flowers-row span:nth-child(even) {
+  animation-delay: 0.5s;
+  animation-direction: reverse;
+}
+
+/* ============================================================
+   SCREEN / SECTION SYSTEM
+   Each screen is a full-viewport overlay; one visible at a time
+   ============================================================ */
+
+.screen {
+  position: fixed;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Hidden by default */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.9s ease, visibility 0.9s ease;
+  transition: opacity 1s ease, visibility 1s ease;
   z-index: 1;
 }
 
@@ -90,6 +197,21 @@ body {
   z-index: 10;
 }
 
+/* Semi-transparent overlay for readability over the scenery */
+.screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(30, 10, 20, 0.25) 0%,
+    rgba(30, 10, 20, 0.15) 60%,
+    rgba(30, 10, 20, 0.3) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
 .screen-content {
   position: relative;
   z-index: 2;
@@ -97,22 +219,35 @@ body {
   padding: 2rem 1.5rem;
   max-width: 640px;
   width: 100%;
-  animation: fadeSlideUp 1s ease-out;
+}
+
+/* Entrance animation — only plays when a screen becomes active */
+.screen.active .screen-content {
+  animation: fadeSlideUp 0.9s ease-out both;
+}
+
+/* Scrollable variant for screens with long content (message & photo) */
+.screen-content-scroll {
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow-y: auto;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(194, 91, 120, 0.3) transparent;
 }
 
 /* ====== FLOATING PARTICLES CONTAINER ====== */
 #particles-container {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   pointer-events: none;
-  z-index: 5; /* above background, below content */
+  z-index: 5;
   overflow: hidden;
+  transition: transform 0.3s ease-out;
 }
 
-/* Individual particle (heart, petal, sparkle) */
 .particle {
   position: absolute;
   font-size: 1.2rem;
@@ -120,118 +255,103 @@ body {
   pointer-events: none;
   animation: floatUp var(--duration, 8s) linear var(--delay, 0s) infinite;
   left: var(--x, 50%);
+  will-change: transform, opacity;
 }
 
-/* ====== ANIMATIONS ====== */
+/* ============================================================
+   KEYFRAME ANIMATIONS
+   ============================================================ */
 
-/* Fade + slide up entrance for screen content */
 @keyframes fadeSlideUp {
-  0% {
+  from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(35px);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Floating particles rising upward */
 @keyframes floatUp {
   0% {
     opacity: 0;
-    transform: translateY(100vh) rotate(0deg) scale(0.6);
+    transform: translateY(100vh) rotate(0deg) scale(0.5);
   }
-  10% {
-    opacity: 0.8;
+  8% {
+    opacity: 0.7;
   }
-  70% {
-    opacity: 0.6;
+  50% {
+    opacity: 0.5;
   }
   100% {
     opacity: 0;
-    transform: translateY(-20vh) rotate(var(--rotation, 360deg)) scale(1);
+    transform: translateY(-15vh) rotate(var(--rotation, 360deg)) scale(1);
   }
 }
 
-/* Gentle pulse / glow */
 @keyframes softPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 1;
-  }
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.12); opacity: 1; }
 }
 
-/* Bloom animation for flowers in screen 2 */
 @keyframes bloomIn {
-  0% {
-    opacity: 0;
-    transform: scale(0) rotate(-30deg);
-  }
-  60% {
-    transform: scale(1.2) rotate(5deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
+  0% { opacity: 0; transform: scale(0) rotate(-30deg); }
+  60% { transform: scale(1.2) rotate(5deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
 }
 
-/* Gentle floating side-to-side */
 @keyframes gentleSway {
-  0%, 100% {
-    transform: translateX(0) rotate(0deg);
-  }
-  25% {
-    transform: translateX(8px) rotate(2deg);
-  }
-  75% {
-    transform: translateX(-8px) rotate(-2deg);
-  }
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(6px) rotate(1.5deg); }
+  75% { transform: translateX(-6px) rotate(-1.5deg); }
 }
 
-/* Shimmer for sparkles */
 @keyframes shimmer {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.3);
-  }
+  0%, 100% { opacity: 0.4; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.2); }
 }
 
-/* Soft breathing glow for buttons */
 @keyframes glowPulse {
   0%, 100% {
-    box-shadow:
-      0 0 15px rgba(232, 135, 158, 0.3),
-      0 0 30px rgba(248, 200, 212, 0.15);
+    box-shadow: 0 0 15px rgba(232, 135, 158, 0.3), 0 0 30px rgba(248, 200, 212, 0.15);
   }
   50% {
-    box-shadow:
-      0 0 25px rgba(232, 135, 158, 0.5),
-      0 0 50px rgba(248, 200, 212, 0.25),
-      0 0 70px rgba(255, 180, 200, 0.1);
+    box-shadow: 0 0 20px rgba(232, 135, 158, 0.5), 0 0 45px rgba(248, 200, 212, 0.2);
   }
 }
 
-/* Typing cursor blink */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+}
+
+@keyframes sunPulse {
+  0%, 100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.08); }
+}
+
+@keyframes cloudDrift {
+  0% { transform: translateX(-10%); }
+  50% { transform: translateX(10%); }
+  100% { transform: translateX(-10%); }
+}
+
+@keyframes finalGlow {
+  0%, 100% {
+    text-shadow: 0 2px 25px rgba(255, 200, 210, 0.4);
+  }
+  50% {
+    text-shadow:
+      0 2px 30px rgba(255, 200, 210, 0.7),
+      0 0 60px rgba(255, 180, 200, 0.3);
+  }
 }
 
 /* ============================================================
    SCREEN 1 — OPENING PAGE
    ============================================================ */
 
-/* Floral frame around the title */
 .floral-frame {
   position: relative;
   width: 280px;
@@ -245,20 +365,20 @@ body {
   animation: gentleSway 3s ease-in-out infinite, softPulse 4s ease-in-out infinite;
 }
 
-.flower-tl { top: 0; left: 0; animation-delay: 0s; }
-.flower-tr { top: 0; right: 0; animation-delay: 0.5s; }
-.flower-bl { bottom: 0; left: 0; animation-delay: 1s; }
-.flower-br { bottom: 0; right: 0; animation-delay: 1.5s; }
+.flower-tl { top: 0; left: 0; }
+.flower-tr { top: 0; right: 0; animation-delay: 0.4s; }
+.flower-bl { bottom: 0; left: 0; animation-delay: 0.8s; }
+.flower-br { bottom: 0; right: 0; animation-delay: 1.2s; }
 
 .main-title {
   font-family: 'Playfair Display', 'Georgia', serif;
   font-size: clamp(2.6rem, 8vw, 4.5rem);
   font-weight: 700;
-  color: #8b3a54;
+  color: #fff;
   text-shadow:
-    0 2px 20px rgba(255, 200, 210, 0.6),
-    0 0 40px rgba(248, 180, 200, 0.3);
-  margin-bottom: 0.8rem;
+    0 2px 20px rgba(200, 100, 130, 0.5),
+    0 0 50px rgba(255, 180, 200, 0.3);
+  margin-bottom: 0.6rem;
   letter-spacing: 0.02em;
   position: absolute;
   top: 50%;
@@ -269,36 +389,37 @@ body {
 
 .subtitle {
   font-family: 'Lora', serif;
-  font-size: clamp(1rem, 3.5vw, 1.35rem);
+  font-size: clamp(1rem, 3.5vw, 1.3rem);
   font-style: italic;
-  color: #a05070;
+  color: rgba(255, 240, 245, 0.9);
   margin-top: 4rem;
-  opacity: 0.9;
   letter-spacing: 0.03em;
 }
 
-/* ====== ROMANTIC BUTTON ====== */
+/* ====== ROMANTIC BUTTONS ====== */
 .romantic-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   margin-top: 2.5rem;
-  padding: 0.9rem 2.8rem;
+  padding: 0.85rem 2.6rem;
   font-family: 'Playfair Display', serif;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: #fff;
   background: linear-gradient(135deg, #e8879e 0%, #d4667e 50%, #c25b78 100%);
-  border: 2px solid rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 50px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   transition: all 0.4s ease;
   animation: glowPulse 3s ease-in-out infinite;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
+  -webkit-tap-highlight-color: transparent;
 }
 
+/* Shimmer sweep effect */
 .romantic-btn::before {
   content: '';
   position: absolute;
@@ -306,20 +427,13 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.25),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
   transition: left 0.6s ease;
 }
 
 .romantic-btn:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow:
-    0 8px 30px rgba(194, 91, 120, 0.4),
-    0 0 60px rgba(248, 200, 212, 0.3);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 30px rgba(194, 91, 120, 0.4), 0 0 50px rgba(248, 200, 212, 0.2);
 }
 
 .romantic-btn:hover::before {
@@ -327,11 +441,11 @@ body {
 }
 
 .romantic-btn:active {
-  transform: translateY(-1px) scale(0.98);
+  transform: translateY(0) scale(0.98);
 }
 
 .btn-sparkle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   animation: shimmer 2s ease-in-out infinite;
 }
 
@@ -343,32 +457,32 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-bottom: 2.5rem;
-  min-height: 80px;
+  gap: 0.7rem;
+  margin-bottom: 2rem;
+  min-height: 70px;
 }
 
 .bloom-flower {
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   opacity: 0;
   animation: bloomIn 0.8s ease-out forwards;
 }
 
 .reveal-text {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.3rem, 4.5vw, 1.9rem);
+  font-size: clamp(1.2rem, 4.5vw, 1.8rem);
   font-style: italic;
-  color: #7a3050;
-  min-height: 3rem;
+  color: rgba(255, 240, 245, 0.95);
+  min-height: 2.8rem;
   line-height: 1.6;
-  text-shadow: 0 1px 15px rgba(255, 200, 220, 0.5);
+  text-shadow: 0 2px 20px rgba(100, 30, 50, 0.4);
+  padding: 0 0.5rem;
 }
 
-/* Typing cursor */
 .reveal-text.typing::after {
   content: '|';
   font-style: normal;
-  color: #c25b78;
+  color: rgba(255, 200, 220, 0.8);
   animation: blink 0.8s step-end infinite;
   margin-left: 2px;
 }
@@ -378,22 +492,23 @@ body {
    ============================================================ */
 
 .glass-card {
-  background: rgba(255, 250, 247, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 250, 247, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 220, 230, 0.5);
   border-radius: 24px;
-  padding: 2.5rem 2rem;
+  padding: 2.2rem 1.8rem;
   margin: 0 auto 1.5rem;
-  max-width: 560px;
+  max-width: 540px;
   position: relative;
   box-shadow:
-    0 8px 32px rgba(194, 91, 120, 0.12),
-    0 2px 8px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    0 8px 32px rgba(100, 40, 60, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
   overflow: hidden;
 }
 
+/* Soft inner glow */
 .glass-card::before {
   content: '';
   position: absolute;
@@ -401,44 +516,40 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 200, 220, 0.15) 0%,
-    transparent 60%
-  );
+  background: radial-gradient(circle, rgba(255, 200, 220, 0.12) 0%, transparent 55%);
   pointer-events: none;
 }
 
 .card-flower-accent {
-  font-size: 1.8rem;
-  opacity: 0.6;
-  margin-bottom: 0.8rem;
+  font-size: 1.6rem;
+  opacity: 0.5;
+  margin-bottom: 0.6rem;
   animation: gentleSway 4s ease-in-out infinite;
 }
 
 .card-flower-bottom {
   margin-bottom: 0;
-  margin-top: 1rem;
+  margin-top: 0.8rem;
 }
 
 .card-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-size: clamp(1.4rem, 5vw, 1.9rem);
   font-weight: 600;
-  color: #8b3a54;
-  margin-bottom: 1.2rem;
+  color: #7a2e4a;
+  margin-bottom: 1rem;
   letter-spacing: 0.02em;
 }
 
 .message-body {
   text-align: left;
   line-height: 1.85;
-  font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+  font-size: clamp(0.92rem, 2.8vw, 1.05rem);
   color: #5a2d3a;
 }
 
 .message-body p {
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
 }
 
 .message-body p:last-child {
@@ -448,9 +559,10 @@ body {
 .message-emphasis {
   font-style: italic;
   font-weight: 600;
-  color: #8b3a54;
+  color: #7a2e4a;
   text-align: center;
-  font-size: clamp(1rem, 3vw, 1.15rem);
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+  margin-top: 0.3rem;
 }
 
 /* ============================================================
@@ -458,18 +570,18 @@ body {
    ============================================================ */
 
 .memory-card {
-  padding-bottom: 2rem;
+  padding-bottom: 1.8rem;
 }
 
 .photo-frame {
   width: 100%;
-  max-width: 380px;
-  margin: 1.2rem auto;
+  max-width: 360px;
+  margin: 1rem auto;
   border-radius: 16px;
   overflow: hidden;
-  border: 3px solid rgba(232, 135, 158, 0.3);
-  box-shadow: 0 4px 20px rgba(194, 91, 120, 0.1);
-  background: rgba(255, 240, 245, 0.5);
+  border: 3px solid rgba(232, 135, 158, 0.25);
+  box-shadow: 0 4px 20px rgba(100, 40, 60, 0.12);
+  background: rgba(255, 240, 245, 0.4);
 }
 
 .photo-placeholder {
@@ -477,40 +589,35 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 250px;
+  min-height: 220px;
   padding: 2rem;
   background:
-    repeating-linear-gradient(
-      45deg,
-      rgba(248, 200, 212, 0.08),
-      rgba(248, 200, 212, 0.08) 10px,
-      transparent 10px,
-      transparent 20px
-    ),
-    linear-gradient(135deg, rgba(255, 245, 248, 0.8), rgba(253, 232, 208, 0.6));
+    repeating-linear-gradient(45deg,
+      rgba(248, 200, 212, 0.06), rgba(248, 200, 212, 0.06) 10px,
+      transparent 10px, transparent 20px),
+    linear-gradient(135deg, rgba(255, 245, 248, 0.7), rgba(253, 232, 208, 0.5));
 }
 
 .placeholder-icon {
-  font-size: 3rem;
-  margin-bottom: 0.8rem;
-  opacity: 0.6;
+  font-size: 2.8rem;
+  margin-bottom: 0.6rem;
+  opacity: 0.5;
 }
 
 .placeholder-text {
   font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  color: #a05070;
-  margin-bottom: 0.3rem;
+  font-size: 1rem;
+  color: #8a4060;
 }
 
 .placeholder-hint {
-  font-size: 0.8rem;
-  color: #b08090;
-  opacity: 0.7;
+  font-size: 0.75rem;
+  color: #a07080;
+  opacity: 0.6;
   font-style: italic;
+  margin-top: 0.2rem;
 }
 
-/* When user adds a real image */
 .memory-photo {
   width: 100%;
   height: auto;
@@ -521,9 +628,9 @@ body {
 .memory-caption {
   font-family: 'Lora', serif;
   font-style: italic;
-  font-size: clamp(0.95rem, 2.8vw, 1.1rem);
-  color: #7a3050;
-  margin-top: 1.2rem;
+  font-size: clamp(0.9rem, 2.8vw, 1.05rem);
+  color: #6a3050;
+  margin-top: 1rem;
   padding: 0 0.5rem;
   line-height: 1.7;
 }
@@ -532,17 +639,26 @@ body {
    SCREEN 5 — FINAL MESSAGE
    ============================================================ */
 
+/* Enhanced background for the finale */
+.screen-finale::before {
+  background: radial-gradient(
+    ellipse at 50% 70%,
+    rgba(255, 180, 140, 0.15) 0%,
+    rgba(30, 10, 20, 0.2) 70%
+  );
+}
+
 .final-wrapper {
-  max-width: 560px;
+  max-width: 540px;
   margin: 0 auto;
 }
 
 .final-flowers {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin: 1rem 0;
-  font-size: 1.6rem;
+  gap: 0.8rem;
+  margin: 0.8rem 0;
+  font-size: 1.5rem;
 }
 
 .final-flowers span {
@@ -558,58 +674,57 @@ body {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.6rem, 6vw, 2.8rem);
   font-weight: 700;
-  color: #8b3a54;
+  color: #fff;
   line-height: 1.4;
-  margin: 1.5rem 0 1.2rem;
-  text-shadow: 0 2px 25px rgba(255, 200, 210, 0.5);
+  margin: 1.5rem 0 1rem;
+  animation: finalGlow 4s ease-in-out infinite;
 }
 
 .final-sub {
   font-family: 'Lora', serif;
-  font-size: clamp(1rem, 3vw, 1.2rem);
-  color: #6a3050;
+  font-size: clamp(0.95rem, 3vw, 1.15rem);
+  color: rgba(255, 235, 240, 0.9);
   line-height: 1.8;
-  margin-bottom: 2rem;
-  opacity: 0.9;
+  margin-bottom: 1.8rem;
 }
 
 .signature {
   font-family: 'Great Vibes', cursive;
-  font-size: clamp(1.8rem, 5vw, 2.5rem);
-  color: #c25b78;
-  margin-top: 1rem;
-  text-shadow: 0 2px 15px rgba(194, 91, 120, 0.2);
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: rgba(255, 210, 220, 0.95);
+  margin-top: 0.8rem;
+  text-shadow: 0 2px 20px rgba(194, 91, 120, 0.3);
 }
 
 /* ====== MUSIC BUTTON ====== */
 .music-toggle {
-  margin-top: 2.5rem;
+  margin-top: 2rem;
 }
 
 .music-btn {
-  background: rgba(255, 250, 247, 0.5);
+  background: rgba(255, 250, 247, 0.2);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(232, 135, 158, 0.3);
+  border: 1px solid rgba(255, 220, 230, 0.3);
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 1.3rem;
+  width: 48px;
+  height: 48px;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .music-btn:hover {
-  background: rgba(248, 200, 212, 0.5);
+  background: rgba(248, 200, 212, 0.35);
   transform: scale(1.1);
-  box-shadow: 0 4px 20px rgba(194, 91, 120, 0.2);
 }
 
 .music-btn.playing {
-  background: rgba(232, 135, 158, 0.35);
+  background: rgba(232, 135, 158, 0.3);
   animation: softPulse 2s ease-in-out infinite;
 }
 
@@ -617,103 +732,63 @@ body {
    RESPONSIVE DESIGN
    ============================================================ */
 
-/* Small phones */
+/* Small phones (iPhone SE etc.) */
 @media (max-width: 400px) {
   .screen-content {
     padding: 1.5rem 1rem;
   }
-
   .glass-card {
-    padding: 1.8rem 1.2rem;
+    padding: 1.6rem 1.1rem;
     border-radius: 18px;
   }
-
   .floral-frame {
     width: 220px;
-    height: 150px;
+    height: 140px;
   }
-
-  .flower {
-    font-size: 1.8rem;
-  }
-
+  .flower { font-size: 1.7rem; }
   .romantic-btn {
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
+    padding: 0.75rem 1.8rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Standard phones */
+@media (max-width: 600px) {
+  .screen-content-scroll {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 }
 
 /* Tablets */
 @media (min-width: 768px) {
   .glass-card {
-    padding: 3rem 2.5rem;
+    padding: 2.8rem 2.4rem;
   }
-
   .photo-placeholder {
-    min-height: 300px;
-  }
-}
-
-/* Desktop */
-@media (min-width: 1024px) {
-  .glass-card {
-    padding: 3rem 3rem;
+    min-height: 280px;
   }
 }
 
 /* Landscape phones */
 @media (max-height: 500px) and (orientation: landscape) {
-  .screen-content {
-    padding: 1rem;
-  }
-
-  .floral-frame {
-    width: 180px;
-    height: 110px;
-  }
-
-  .flower {
-    font-size: 1.5rem;
-  }
-
-  .main-title {
-    font-size: 2rem;
-  }
-
-  .subtitle {
-    margin-top: 2.5rem;
-    font-size: 0.9rem;
-  }
-
-  .romantic-btn {
-    margin-top: 1.2rem;
-    padding: 0.6rem 1.8rem;
-  }
-
-  .glass-card {
-    padding: 1.5rem 1.2rem;
-    max-height: 70vh;
-    overflow-y: auto;
-  }
+  .screen-content { padding: 0.8rem; }
+  .floral-frame { width: 160px; height: 100px; }
+  .flower { font-size: 1.4rem; }
+  .main-title { font-size: 2rem; }
+  .subtitle { margin-top: 2rem; font-size: 0.85rem; }
+  .romantic-btn { margin-top: 1rem; padding: 0.5rem 1.5rem; font-size: 0.9rem; }
+  .glass-card { padding: 1.2rem 1rem; max-height: 65vh; overflow-y: auto; }
+  .bloom-flower { font-size: 1.8rem; }
 }
 
-/* ====== ACCESSIBILITY — Reduced Motion ====== */
+/* Accessibility — respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .particle,
-  .flower,
-  .bloom-flower,
-  .btn-sparkle,
-  .romantic-btn,
-  .final-flowers span,
-  .music-btn.playing {
+  .particle, .flower, .bloom-flower, .btn-sparkle,
+  .romantic-btn, .final-flowers span, .music-btn.playing,
+  .scene-sun, .scene-cloud, .scene-flowers-row span {
     animation: none !important;
   }
-
-  .screen {
-    transition-duration: 0.3s;
-  }
-
-  .screen-content {
-    animation: none;
-  }
+  .screen { transition-duration: 0.3s; }
+  .screen.active .screen-content { animation: none; }
 }

@@ -227,6 +227,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Tap-to-reveal toggle for hidden future children note
+  var secretFutureNote = document.getElementById('secret-future-note');
+  if (secretFutureNote) {
+    secretFutureNote.addEventListener('click', function () {
+      secretFutureNote.classList.toggle('revealed');
+    });
+  }
+
 
   // ============================================================
   // TYPING EFFECT

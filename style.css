@@ -387,6 +387,73 @@ body {
   width: max-content;
 }
 
+/* Resonating Spiritual Expansion for HEAVEN */
+.heaven-word {
+  display: inline-block;
+  position: relative;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff 0%, #fff0f5 25%, #ffd6e0 50%, #fffbe6 75%, #ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: heavenSpiritualResonance 5s ease-in-out infinite, heavenShimmer 8s linear infinite;
+  filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.85)) drop-shadow(0 0 32px rgba(255, 192, 203, 0.65));
+}
+
+.heaven-word::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130%;
+  height: 130%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 240, 250, 0.45) 0%, rgba(255, 220, 180, 0.2) 45%, transparent 70%);
+  animation: spiritualAuraExpand 5s ease-in-out infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes heavenSpiritualResonance {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 28px rgba(255, 192, 203, 0.5));
+  }
+  50% {
+    transform: scale(1.045);
+    filter: drop-shadow(0 0 24px rgba(255, 255, 255, 1)) drop-shadow(0 0 45px rgba(255, 215, 225, 0.85)) drop-shadow(0 0 60px rgba(255, 223, 140, 0.45));
+  }
+}
+
+@keyframes spiritualAuraExpand {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.45);
+    opacity: 0.8;
+  }
+}
+
+@keyframes heavenShimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.heart-pulse {
+  display: inline-block;
+  animation: heartPulseSlow 2.5s ease-in-out infinite;
+  color: #fff;
+  filter: drop-shadow(0 0 10px rgba(255, 180, 200, 0.6));
+}
+
+@keyframes heartPulseSlow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
 .subtitle {
   font-family: 'Lora', serif;
   font-size: clamp(1rem, 3.5vw, 1.3rem);
@@ -872,7 +939,82 @@ body {
   font-style: italic;
   font-size: 0.88rem;
   color: #905068;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Secret hidden note: "future photo of our children 'Arken Ciel' laterr" */
+.secret-future-note {
+  margin: 0.4rem auto 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 20px;
+  background: rgba(255, 235, 242, 0.45);
+  border: 1px dashed rgba(230, 130, 165, 0.5);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  max-width: 95%;
+}
+
+.secret-future-text {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: clamp(0.78rem, 2.5vw, 0.88rem);
+  color: #8c3b58;
+  letter-spacing: 0.02em;
+  filter: blur(4px);
+  opacity: 0.6;
+  transition: filter 0.4s ease, opacity 0.4s ease;
+  display: inline-block;
+  animation: secretSoftBreathe 5s ease-in-out infinite;
+}
+
+.secret-sparkle-icon {
+  font-size: 0.95rem;
+  animation: toolWiggle 3s ease-in-out infinite;
+}
+
+.secret-reveal-hint {
+  font-size: 0.72rem;
+  color: #b56a85;
+  font-style: italic;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover or tap reveals the secret */
+.secret-future-note:hover,
+.secret-future-note.revealed {
+  background: rgba(255, 220, 235, 0.9);
+  border-color: rgba(255, 105, 140, 0.75);
+  box-shadow: 0 4px 18px rgba(230, 100, 140, 0.25);
+  transform: scale(1.03);
+}
+
+.secret-future-note:hover .secret-future-text,
+.secret-future-note.revealed .secret-future-text {
+  filter: blur(0px);
+  opacity: 1;
+}
+
+.secret-future-note:hover .secret-reveal-hint,
+.secret-future-note.revealed .secret-reveal-hint {
+  opacity: 0;
+  display: none;
+}
+
+@keyframes secretSoftBreathe {
+  0%, 100% {
+    filter: blur(4.5px);
+    opacity: 0.55;
+  }
+  50% {
+    filter: blur(2.5px);
+    opacity: 0.8;
+  }
 }
 
 .wip-bar {
@@ -975,57 +1117,98 @@ body {
 }
 
 /* Majestic Signature - Adiran */
+/* ============================================================
+   ADIRAN — SYNTHESIS OF DEEP MYSTERIOUS SEA & MAJESTIC RADIANCE
+   ============================================================ */
+
 .majestic-signature-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 1rem auto 0.6rem;
+  margin: 0.8rem auto 0.5rem;
   position: relative;
 }
 
-.crown-float {
-  font-size: clamp(1.8rem, 5vw, 2.5rem);
-  animation: crownHover 2.6s ease-in-out infinite;
-  filter: drop-shadow(0 4px 14px rgba(255, 215, 0, 0.65));
+.ocean-crown-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
   margin-bottom: -0.2rem;
 }
 
-@keyframes crownHover {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg) scale(1);
-  }
-  50% {
-    transform: translateY(-8px) rotate(4deg) scale(1.14);
-  }
+.ocean-wave-glyph {
+  font-size: 1.35rem;
+  animation: oceanWaveRoll 3.5s ease-in-out infinite;
+  filter: drop-shadow(0 2px 10px rgba(72, 202, 228, 0.6));
 }
 
+.crown-float {
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  animation: crownHover 2.8s ease-in-out infinite;
+  filter: drop-shadow(0 4px 16px rgba(255, 215, 0, 0.75));
+}
+
+.ocean-star-glyph {
+  font-size: 1.35rem;
+  animation: starRadiance 3.5s ease-in-out infinite;
+  filter: drop-shadow(0 2px 10px rgba(255, 215, 0, 0.7));
+}
+
+@keyframes oceanWaveRoll {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+  50% { transform: translateY(-4px) rotate(-8deg); opacity: 1; }
+}
+
+@keyframes starRadiance {
+  0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.8; }
+  50% { transform: scale(1.18) rotate(15deg); opacity: 1; }
+}
+
+/* The name Adiran: flowing between Deep Adriatic Sea & Radiant Majesty */
 .majestic-signature-box .majestic-name {
   font-family: 'Great Vibes', cursive;
-  font-size: clamp(2.8rem, 8vw, 4rem);
+  font-size: clamp(2.9rem, 8.5vw, 4.2rem);
   font-weight: 500;
+  /* Duality: Midnight Adriatic Sea (#091c2f, #134063) -> Ocean Cyan (#48cae4) -> Celestial Gold (#ffd700) -> Dawn Radiance (#ffffff) */
   background: linear-gradient(
-    110deg,
-    #ffe270 0%,
-    #ffffff 22%,
-    #ffa3c0 45%,
-    #ffe270 65%,
-    #ffffff 82%,
-    #ff8fa9 100%
+    115deg,
+    #0c2338 0%,
+    #184e77 15%,
+    #48cae4 30%,
+    #ffe270 45%,
+    #ffffff 55%,
+    #ffd166 70%,
+    #1e5f8a 85%,
+    #0c2338 100%
   );
-  background-size: 250% auto;
+  background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent !important;
   color: transparent !important;
-  animation: majesticShine 4s linear infinite;
-  filter: drop-shadow(0 2px 20px rgba(255, 215, 0, 0.55));
+  animation: oceanLightTide 5.5s ease-in-out infinite alternate;
+  /* Dual Aura: Deep Oceanic Abyss + Radiant Solar Halo */
+  filter:
+    drop-shadow(0 2px 12px rgba(13, 35, 56, 0.75))
+    drop-shadow(0 0 20px rgba(72, 202, 228, 0.5))
+    drop-shadow(0 0 35px rgba(255, 215, 0, 0.5));
   letter-spacing: 0.04em;
   margin: 0;
   line-height: 1.2;
 }
 
-@keyframes majesticShine {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 250% 50%; }
+@keyframes oceanLightTide {
+  0% {
+    background-position: 0% 50%;
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+  100% {
+    background-position: 100% 50%;
+    transform: scale(1);
+  }
 }
 
 /* Secret text: "yours future husband" */

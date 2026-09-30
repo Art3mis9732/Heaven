@@ -227,11 +227,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Tap-to-reveal toggle for hidden future children note
-  var secretFutureNote = document.getElementById('secret-future-note');
-  if (secretFutureNote) {
-    secretFutureNote.addEventListener('click', function () {
-      secretFutureNote.classList.toggle('revealed');
+  // Interactive tap animation for secret future children card
+  var secretFutureCard = document.getElementById('secret-future-card');
+  if (secretFutureCard) {
+    secretFutureCard.addEventListener('click', function () {
+      secretFutureCard.style.transform = 'scale(1.04)';
+      setTimeout(function () {
+        secretFutureCard.style.transform = '';
+      }, 250);
     });
   }
 

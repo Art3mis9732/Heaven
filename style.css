@@ -942,78 +942,61 @@ body {
   margin-bottom: 0.4rem;
 }
 
-/* Secret hidden note: "future photo of our children 'Arken Ciel' laterr" */
-.secret-future-note {
-  margin: 0.4rem auto 0.6rem;
-  display: inline-flex;
+/* Clear, elegant secret card: "future photo of our children 'Arken Ciel' laterr" */
+.secret-future-card {
+  margin: 0.6rem auto 0.7rem;
+  padding: 0.65rem 1.1rem;
+  background: rgba(255, 240, 246, 0.72);
+  border: 1px dashed rgba(220, 90, 130, 0.45);
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(220, 100, 140, 0.08);
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.95rem;
+  gap: 0.35rem;
+  animation: softCardPulse 4s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.secret-future-card:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: rgba(255, 235, 244, 0.9);
+  box-shadow: 0 4px 18px rgba(220, 100, 140, 0.18);
+  border-color: rgba(220, 80, 120, 0.7);
+}
+
+.secret-pill {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b5476d;
+  background: rgba(255, 182, 193, 0.32);
+  padding: 0.18rem 0.7rem;
   border-radius: 20px;
-  background: rgba(255, 235, 242, 0.45);
-  border: 1px dashed rgba(230, 130, 165, 0.5);
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  max-width: 95%;
+  display: inline-block;
 }
 
 .secret-future-text {
   font-family: 'Lora', serif;
   font-style: italic;
-  font-size: clamp(0.78rem, 2.5vw, 0.88rem);
-  color: #8c3b58;
+  font-size: clamp(0.9rem, 2.8vw, 1.05rem);
+  color: #6a2a40;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
+  font-weight: 500;
   letter-spacing: 0.02em;
-  filter: blur(4px);
-  opacity: 0.6;
-  transition: filter 0.4s ease, opacity 0.4s ease;
-  display: inline-block;
-  animation: secretSoftBreathe 5s ease-in-out infinite;
 }
 
-.secret-sparkle-icon {
-  font-size: 0.95rem;
-  animation: toolWiggle 3s ease-in-out infinite;
-}
-
-.secret-reveal-hint {
-  font-size: 0.72rem;
-  color: #b56a85;
-  font-style: italic;
-  opacity: 0.75;
-  transition: opacity 0.3s ease;
-}
-
-/* Hover or tap reveals the secret */
-.secret-future-note:hover,
-.secret-future-note.revealed {
-  background: rgba(255, 220, 235, 0.9);
-  border-color: rgba(255, 105, 140, 0.75);
-  box-shadow: 0 4px 18px rgba(230, 100, 140, 0.25);
-  transform: scale(1.03);
-}
-
-.secret-future-note:hover .secret-future-text,
-.secret-future-note.revealed .secret-future-text {
-  filter: blur(0px);
-  opacity: 1;
-}
-
-.secret-future-note:hover .secret-reveal-hint,
-.secret-future-note.revealed .secret-reveal-hint {
-  opacity: 0;
-  display: none;
-}
-
-@keyframes secretSoftBreathe {
+@keyframes softCardPulse {
   0%, 100% {
-    filter: blur(4.5px);
-    opacity: 0.55;
+    box-shadow: 0 2px 10px rgba(220, 100, 140, 0.08);
   }
   50% {
-    filter: blur(2.5px);
-    opacity: 0.8;
+    box-shadow: 0 4px 20px rgba(220, 90, 130, 0.2);
   }
 }
 
@@ -1129,85 +1112,76 @@ body {
   position: relative;
 }
 
-.ocean-crown-container {
+/* Classy Emblem: Delicate Ocean Wave & Starlight Crest */
+.ocean-crest {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
-  margin-bottom: -0.2rem;
+  gap: 0.8rem;
+  margin-bottom: 0.35rem;
+  width: 100%;
+  max-width: 220px;
 }
 
-.ocean-wave-glyph {
-  font-size: 1.35rem;
-  animation: oceanWaveRoll 3.5s ease-in-out infinite;
-  filter: drop-shadow(0 2px 10px rgba(72, 202, 228, 0.6));
+.crest-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.6), transparent);
 }
 
-.crown-float {
-  font-size: clamp(1.9rem, 5vw, 2.6rem);
-  animation: crownHover 2.8s ease-in-out infinite;
-  filter: drop-shadow(0 4px 16px rgba(255, 215, 0, 0.75));
+.crest-symbol {
+  font-size: 1.05rem;
+  letter-spacing: 0.25em;
+  background: linear-gradient(135deg, #48cae4 0%, #ffd700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: crestShimmer 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 6px rgba(72, 202, 228, 0.6));
 }
 
-.ocean-star-glyph {
-  font-size: 1.35rem;
-  animation: starRadiance 3.5s ease-in-out infinite;
-  filter: drop-shadow(0 2px 10px rgba(255, 215, 0, 0.7));
+@keyframes crestShimmer {
+  0% { filter: drop-shadow(0 0 4px rgba(72, 202, 228, 0.5)); }
+  100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7)); }
 }
 
-@keyframes oceanWaveRoll {
-  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
-  50% { transform: translateY(-4px) rotate(-8deg); opacity: 1; }
-}
-
-@keyframes starRadiance {
-  0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.8; }
-  50% { transform: scale(1.18) rotate(15deg); opacity: 1; }
-}
-
-/* The name Adiran: flowing between Deep Adriatic Sea & Radiant Majesty */
-.majestic-signature-box .majestic-name {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(2.9rem, 8.5vw, 4.2rem);
-  font-weight: 500;
-  /* Duality: Midnight Adriatic Sea (#091c2f, #134063) -> Ocean Cyan (#48cae4) -> Celestial Gold (#ffd700) -> Dawn Radiance (#ffffff) */
+/* Classy, Dignified Signature: Cormorant Garamond */
+.majestic-signature-box .classy-adiran {
+  font-family: 'Cormorant Garamond', 'Cinzel', 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(2.4rem, 7vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin: 0.15rem 0;
+  line-height: 1.25;
+  /* Duality: Midnight Adriatic Sea (#0f283e) -> Deep Aquamarine (#2a6f97) -> Pure Starlight Gold (#ffd700) -> Ethereal White (#ffffff) */
   background: linear-gradient(
-    115deg,
-    #0c2338 0%,
-    #184e77 15%,
-    #48cae4 30%,
-    #ffe270 45%,
-    #ffffff 55%,
-    #ffd166 70%,
-    #1e5f8a 85%,
-    #0c2338 100%
+    120deg,
+    #0f283e 0%,
+    #2a6f97 22%,
+    #61a5c2 38%,
+    #ffd700 55%,
+    #ffffff 68%,
+    #ffd700 82%,
+    #1c4e75 100%
   );
-  background-size: 300% auto;
+  background-size: 260% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent !important;
   color: transparent !important;
-  animation: oceanLightTide 5.5s ease-in-out infinite alternate;
-  /* Dual Aura: Deep Oceanic Abyss + Radiant Solar Halo */
+  animation: classyOceanTide 6s ease-in-out infinite alternate;
   filter:
-    drop-shadow(0 2px 12px rgba(13, 35, 56, 0.75))
-    drop-shadow(0 0 20px rgba(72, 202, 228, 0.5))
-    drop-shadow(0 0 35px rgba(255, 215, 0, 0.5));
-  letter-spacing: 0.04em;
-  margin: 0;
-  line-height: 1.2;
+    drop-shadow(0 2px 8px rgba(15, 40, 62, 0.65))
+    drop-shadow(0 0 16px rgba(255, 215, 0, 0.45));
 }
 
-@keyframes oceanLightTide {
+@keyframes classyOceanTide {
   0% {
     background-position: 0% 50%;
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.025);
+    letter-spacing: 0.08em;
   }
   100% {
     background-position: 100% 50%;
-    transform: scale(1);
+    letter-spacing: 0.1em;
   }
 }
 

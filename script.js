@@ -81,6 +81,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Trigger special animations for specific screens
         if (screenNumber === 2) {
           startScreen2Animations();
+        } else if (screenNumber === 3) {
+          startScreen3Animations();
         }
       }
     }, 500); // half-second gap between screens
@@ -159,6 +161,70 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 500);
       });
     }, typingDelay);
+  }
+
+
+  // ============================================================
+  // SCREEN 3 ANIMATIONS (MWAAHH kiss effect after 3.5s)
+  // ============================================================
+
+  var muahTimer = null;
+
+  function startScreen3Animations() {
+    var muahTarget = document.getElementById('muah-target');
+    if (!muahTarget) return;
+
+    // Reset state if visited again
+    muahTarget.classList.remove('pop-kiss');
+    if (muahTimer) clearTimeout(muahTimer);
+
+    // After 3.5 seconds (estimated reading time for the top lines), trigger kiss animation
+    muahTimer = setTimeout(function () {
+      muahTarget.classList.add('pop-kiss');
+      spawnKissBurst(muahTarget);
+    }, 3500);
+  }
+
+  function spawnKissBurst(targetElement) {
+    if (!targetElement) return;
+    var kissEmojis = ['💋', '💕', '😘', '🌸'];
+
+    for (var i = 0; i < 4; i++) {
+      (function (idx) {
+        setTimeout(function () {
+          var kiss = document.createElement('span');
+          kiss.className = 'floating-kiss';
+          kiss.textContent = kissEmojis[idx % kissEmojis.length];
+
+          var kx = (Math.random() - 0.5) * 60;
+          var kr = (Math.random() - 0.5) * 40;
+          kiss.style.setProperty('--kx', kx + 'px');
+          kiss.style.setProperty('--kr', kr + 'deg');
+          kiss.style.left = (targetElement.offsetLeft + targetElement.offsetWidth / 2 + (Math.random() - 0.5) * 20) + 'px';
+          kiss.style.top = (targetElement.offsetTop - 8) + 'px';
+
+          if (targetElement.parentElement) {
+            targetElement.parentElement.style.position = 'relative';
+            targetElement.parentElement.appendChild(kiss);
+          }
+
+          setTimeout(function () {
+            if (kiss && kiss.parentNode) {
+              kiss.parentNode.removeChild(kiss);
+            }
+          }, 1900);
+        }, idx * 240);
+      })(i);
+    }
+  }
+
+  // Also allow tapping/clicking MWAAHH to trigger another burst anytime!
+  var muahTarget = document.getElementById('muah-target');
+  if (muahTarget) {
+    muahTarget.addEventListener('click', function () {
+      muahTarget.classList.add('pop-kiss');
+      spawnKissBurst(muahTarget);
+    });
   }
 
 

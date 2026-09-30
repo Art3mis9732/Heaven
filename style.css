@@ -562,7 +562,131 @@ body {
   color: #7a2e4a;
   text-align: center;
   font-size: clamp(0.95rem, 3vw, 1.1rem);
-  margin-top: 0.3rem;
+  margin-top: 0.6rem;
+}
+
+/* MWAAHH kiss animation */
+.muah-pop {
+  display: inline-block;
+  font-weight: 700;
+  color: #c24068;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+
+.muah-pop .kiss-emoji {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.muah-pop.pop-kiss {
+  animation: muahHeartbeat 1.6s ease-in-out infinite;
+}
+
+.muah-pop.pop-kiss .kiss-emoji {
+  animation: kissFloat 1.6s ease-in-out infinite;
+}
+
+@keyframes muahHeartbeat {
+  0%, 100% {
+    transform: scale(1);
+    color: #c24068;
+    text-shadow: 0 0 0 rgba(232, 100, 140, 0);
+  }
+  20% {
+    transform: scale(1.18);
+    color: #e6205e;
+    text-shadow: 0 0 12px rgba(230, 32, 94, 0.5);
+  }
+  40% {
+    transform: scale(1.05);
+  }
+  60% {
+    transform: scale(1.15);
+    color: #e6205e;
+    text-shadow: 0 0 14px rgba(230, 32, 94, 0.6);
+  }
+}
+
+@keyframes kissFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  30% {
+    transform: translateY(-5px) scale(1.3) rotate(-12deg);
+  }
+  60% {
+    transform: translateY(-8px) scale(1.35) rotate(12deg);
+  }
+}
+
+/* Floating kiss burst particles */
+.floating-kiss {
+  position: absolute;
+  pointer-events: none;
+  font-size: 1.3rem;
+  animation: floatKissAway 1.8s ease-out forwards;
+  z-index: 10;
+}
+
+@keyframes floatKissAway {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.6) rotate(0deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(var(--kx, 10px), -35px) scale(1.2) rotate(var(--kr, 15deg));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--kx, 20px), -75px) scale(1.4) rotate(var(--kr, 30deg));
+  }
+}
+
+/* Shy animation for 'the way we kiss hahaha' */
+.shy-kiss {
+  display: inline-block;
+  background: rgba(255, 192, 203, 0.32);
+  border-bottom: 1.5px dashed rgba(210, 105, 140, 0.55);
+  padding: 0.05rem 0.4rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.shy-kiss:hover {
+  background: rgba(255, 182, 193, 0.55);
+  box-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+}
+
+.shy-emoji {
+  display: inline-block;
+  animation: shyWiggle 3.5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes shyWiggle {
+  0%, 100%, 70% {
+    transform: rotate(0deg) scale(1);
+  }
+  10% {
+    transform: rotate(-12deg) scale(1.2);
+  }
+  20% {
+    transform: rotate(12deg) scale(1.2);
+  }
+  30% {
+    transform: rotate(-8deg) scale(1.15);
+  }
+  40% {
+    transform: rotate(8deg) scale(1.15);
+  }
+  50% {
+    transform: rotate(0deg) scale(1);
+  }
 }
 
 /* ============================================================
